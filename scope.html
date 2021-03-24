@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 作用域链
+        // 延长作用域链
+        function withScope() {
+            var qs = '?debug=true';
+
+            with (location) {
+                var url = href + qs;
+            }
+            return url;
+        }
+        console.log(withScope());
+
+        function tryCatchScope(window) {
+            try {
+                throw new Error('出错啦');
+            } catch (e) {
+                console.log('catch：' + e)
+            }
+            console.log(e)
+        }
+        // tryCatchScope(window);
+
+        // 函数提升
+        testFun();
+        function testFun() {
+            console.log('testFun');
+        }
+
+        // 函数表达式不会提升
+        console.log(testFun2);
+        var testFun2 = () => {
+            console.log('testFun2');
+        }
+
+        // 声明提升并赋值undefined，赋值不会提升
+        console.log(testVar);
+        var testVar = 'wmy';
+
+        // console.log(testLet);
+        // let testLet = 'wmy';
+
+        let testLet2;
+        console.log(testLet2); // undefined
+        testLet2 = 'wmy';
+
+        // console.log(Person);
+        // const testClass = new Person();
+        // class Person{
+        // }
+
+        // var value = 1;
+
+        // function foo() {
+        //     console.log(value);
+        // }
+
+        // function bar() {
+        //     var value = 2;
+        //     foo();
+        // }
+
+        // bar();
+
+        function foo() {
+            console.log("foo");
+        }
+
+        console.log(foo)
+
+        var foo = 1;
+
+
+        function foo2(bar) {
+            console.log(bar);
+            var bar = 3;
+        }
+        foo2(2);
+
+        function foo3() {
+            console.log('func foo3');
+        }
+        var foo3 = function foo3() {
+            console.log('var');
+        }
+        foo3()
+
+        function sum(a, b) {
+            var sumNum = a + b;
+            return sumNum;
+        }
+        var result = sum(1, 1);
+        // console.log(sumNum);
+
+        var person = {};
+        person.name = 'wmy';
+        console.log(person);
+    </script>
+</body>
+
+</html>

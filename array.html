@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [1,2];
+        console.log('join+',arr.join('||'), arr);
+        // console.log('push+', arr.push(4), arr);
+        // console.log('pop+', arr.pop(), arr);
+        // console.log('shift+', arr.shift(), arr);
+        // console.log('unshift+', arr.unshift(4), arr);
+        console.log('reverse+', arr.reverse(), arr);
+        const arr2 = ['fdsb', 'fdsa'];
+        const arr3 = [3, 1, 10, 5];
+        console.log(arr2.sort(), arr2);
+        console.log(arr3.sort());
+        console.log(arr3.sort(function(val1, val2) {return val1 - val2}));
+        function compare1(val1, val2) {
+            if(val1 < val2) {
+                return -1;
+            }else if(val1 === val2) {
+                return 0;
+            }else {
+                return 1;
+            }
+        }
+        console.log('compare1+', arr3.sort(compare1));
+        const arr4 = ['a', 'b', 'c'];
+        console.log('concat+', arr4.concat("d", {e: 5}, ['g']), arr4);
+        console.log('slice+', arr4.slice(1, 2), arr4);
+        // console.log('slice+', arr4.slice(2, 1));
+        // console.log('slice+', arr4.slice(-2, 2));
+        console.log('splice+', arr4.splice(), arr4); // splice+ []
+        // console.log('splice+', arr4.splice(0, 1, 'd', 'e'), arr4); // splice+ []
+        console.log(arr4.indexOf('b', 1), arr4); // 1
+        const arr5 = [11, 22, 33];
+        console.log(arr5.reduce((prev, cur, index, array) => {
+            console.log('reduce',prev, cur, index, array);
+            return prev + cur;
+        }), arr5)
+        console.log(arr5.some((item) => {console.log(2); return item > 20}), arr5)
+        console.log(arr5.every((item) => {console.log(1); return item > 20}), arr5)
+        console.log(arr5.filter((item) => {console.log(3); return item > 20}), arr5)
+        console.log(arr5.map((item) => item + 1));
+        console.log(arr5.forEach((item) => item + 1));
+    </script>
+</body>
+</html>
