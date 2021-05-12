@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 设置对象属性，避免出现同名属性
+        // const a = Symbol();
+        // const obj = {
+        //     [a]: function () {
+        //         console.log(222);
+        //     }
+        // }
+
+        // console.log(obj.a);
+        // console.log(obj[a]);
+
+        // // 消除魔法字符串，魔法字符串指的是一些标识字符串
+        // const symbolStr = {
+        //     a: Symbol()
+        // }
+        // function findString(str) {
+        //     switch (str) {
+        //         case symbolStr.a: return true;
+        //         default: return false;
+        //     }
+        // }
+
+        // console.log(findString(symbolStr.a));
+
+        // const a = Symbol('a');
+        // const b = Symbol('b');
+        // const obj = {
+        //     [a]: 'symbol a',
+        //     [b]: 'symbol b',
+        //     a: 'string a',
+        // }
+        // console.log(obj);
+        // console.log(Object.getOwnPropertyDescriptors(obj));
+        // console.log(Object.getOwnPropertyNames(obj));
+        // console.log(Object.getOwnPropertySymbols(obj));
+        // console.log(Reflect.ownKeys(obj));
+
+        // const arr1 = [1, 2];
+        // const arr2 = [3, 4];
+        // console.log(arr1.concat(arr2));
+        // arr2[Symbol.isConcatSpreadable] = false;
+        // console.log(arr1.concat(arr2));
+        // arr1[Symbol.isConcatSpreadable] = false;
+        // console.log(arr1.concat(arr2));
+
+        // const arr = ['a', 'b', 'c'];
+        // const iterator = arr[Symbol.iterator]();
+        // console.log(arr);
+        // console.log(iterator);
+        // console.log(iterator.next());
+
+        // 自定义迭代器对象
+        const obj = {
+            arr: [1, 3, 5],
+            [Symbol.iterator]() {
+                return
+            }
+        }
+
+    </script>
+</body>
+
+</html>

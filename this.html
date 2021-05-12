@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 可以访问外层arguments
+        function argWrap() {
+            return arg = () => {
+                console.log(arguments[0]);
+            }
+        }
+        const result = argWrap(1);
+        result();
+
+        // 可以通过rest参数方式访问
+        let arg2 = (...nums) => {console.log(nums)};
+        arg2(111)
+
+        // 箭头函数没有arguments
+        // const arg3 = (a) => {
+        //     console.log(arguments);
+        // }
+        // arg3(222);
+        const str = 'wmy';
+        const { length } = str;
+        console.log(length + 'length');
+
+        const num = 4;
+        const { constructor } = num;
+        console.log(constructor === Number);
+    </script>
+</body>
+
+</html>
