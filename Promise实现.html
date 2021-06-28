@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 手写promise
+        const PENDING = 'pending';
+        const FULFILLED = 'fulfilled';
+        const REJECTED = 'rejected';
+
+        class Promise {
+            constructor(executor) {
+                this.status = PENDING;
+                this.value = undefined;
+                this.reason = undefined;
+                this.onResolvedCallbacks = [];
+                this.onRejectCallbacks = [];
+
+                let resolve = (reason) => {
+                    if (this.status === PENDING) {
+                        this.status = FULFILLED;
+                        this.value = value;
+                        this.onResolvedCallbacks.forEach((fn) => fn());
+                    }
+                }
+
+                let reject = (reason) =>{
+                    if(this.status === PENDING) {
+                        this.status = REJECTED;
+                        this.value = value;
+                        this.onRejectCallbacks.forEach(fn => fn());
+                    }
+                }
+
+                try {
+                    executor(resolve, reject);
+                } catch (error) {
+                    reject(error)
+                }
+            }
+
+            then (onFulfilled, onRejected) {
+                // 解决onFulfilled和onRejected没有传值的问题
+                onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : (res) => res;
+                onRejected = typeof onRejected === 'function' ? onRejected : (err) => {throw err};
+
+
+            }
+        }
+    </script>
+</body>
+</html>

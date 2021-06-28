@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 生成器函数 * 可以偏左偏右或在中间
+        function * generatorFn() {
+            console.log('generator');
+        }
+
+        // 生成器函数表达式
+        const generatorFun = function* () {};
+
+        // 作为对象字面量方法的生成器函数
+        const foo = {
+            * generatorFn() {
+
+            }
+        }
+
+        // 作为类实例方法的生成器函数
+        class Person {
+            * generatorFn() {
+
+            }
+        }
+
+        // 作为类静态方法的生成器函数
+        class Bar {
+            static * generatorFn() {
+
+            }
+        }
+
+        // 调用生成器函数会产生一个生成器对象，也实现了iterator接口
+        const g = generatorFn();
+        console.log(g);
+        console.log(g.next());
+        console.log(g === g[Symbol.iterator]());
+
+
+        // yield关键字可以让生成器停止, 如下yield把函数分成了三部分，每执行一次next执行一个部分
+        function *generatorFunction() {
+            console.log(1111);
+            yield 'foo';
+            console.log(222);
+            yield 'bar';
+            console.log(333);
+            return 'wmy';
+        }
+        const gg = generatorFunction();
+        console.log(gg.next());
+        console.log(gg.next());
+        console.log(gg.next());
+
+        // 在一个生成器对象上调用next不会影响其他生成器
+        const g1 = generatorFunction();
+        const g2 = generatorFunction();
+        console.log(g1.next());
+        console.log(g2.next());
+
+        // yield关键字只能用于生成器函数，用于生成器函数中的嵌套函数也会报错
+        // function* generatorFunc() {
+        //     function a() {
+        //         yield 'foo';
+        //     }
+        // }
+
+        // 生成器作为可迭代对象,eg，定义一个可迭代对象，它会产生一个迭代器，这个迭代器会指定执行的次数
+        function * nTimes(n) {
+            while(n--) {
+                yield;
+            }
+        }
+        for(const _ of generatorFunction()) {
+            console.log(111);
+        }
+
+        // 使用yield实现输入和输出
+        
+    </script>
+</body>
+</html>
