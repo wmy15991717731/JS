@@ -1,0 +1,71 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-07-01 16:29:52
+ * @LastEditTime: 2021-07-01 19:43:46
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \js\Object.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 访问器属性year，数据属性year_和edition，定义单个属性
+        let book = {
+            year_: 2020,
+            edition: 1,
+        };
+        Object.defineProperty(book, 'year', {
+            get() {
+                return this.year_;
+            },
+            set(newValue) {
+                this.year_ = newValue;
+                this.edition += newValue - 2020;
+            }
+        })
+
+        book.year = 2021;
+        console.log(book.edition);
+
+        // 定义多个属性
+        let people = {}
+
+        Object.defineProperties(people, {
+            age: {
+                value: 0,
+                configurable: true,
+                writable: true,
+            },
+            year_: {
+                value: 1999,
+                configurable: true,
+                writable: true,
+            },
+            year: {
+                get() {
+                    return this.year_;
+                },
+                set(newValue) {
+                    this.year_ = newValue;
+                    this.age = newValue - 1999
+                }
+            }
+        })
+        people.year = 2021;
+        console.log(people.age);
+        console.log(Object.getOwnPropertyDescriptor(people, 'age'));
+        console.log(Object.getOwnPropertyDescriptor(people, 'year'));
+        console.log(Object.getOwnPropertyDescriptors(people));
+    </script>
+</body>
+
+</html>
