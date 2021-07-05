@@ -1,0 +1,74 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-07-02 17:05:31
+ * @LastEditTime: 2021-07-05 16:27:50
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \js\createObject.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @description: 工厂模式，缺点无法确定创建的对象的类型，数组？对象？。。。
+         * @param {*}
+         * @return {*}
+         */
+        function createPerson(name, age, bothYear) {
+            let obj = new Object();
+            obj.name = name;
+            obj.age = age;
+            obj.bothYear = bothYear;
+            obj.like = function () {
+                cosole.log('study');
+            }
+            return obj;
+        }
+        let wmy = createPerson('wmy', 22, 1999);
+
+        /**
+         * @description: 构造函数模式
+         * @param {*}
+         * @return {*}
+         */
+        const funInstanceof = (left, right) => {
+            // let proto = Object.getPrototypeOf(left);
+            let proto = left.__proto__;
+            // let rightProto = Object.getPrototypeOf(right);
+            let rightProto = right.prototype;
+            while (true) {
+                if (proto === null) return false;
+                if (proto === rightProto) {
+                    return true;
+                }
+                proto = proto.__proto__;
+            }
+        }
+        function Person(name, age, bothYear) {
+            this.name = name;
+            this.age = age;
+            this.bothYear = bothYear;
+            this.like = function () {
+                console.log('study');
+            }
+        }
+        const person1 = new Person('wmy', 22, 1999);
+        const person2 = new Person('wmy2', 23, 1999);
+        console.log(person1.constructor === person2.constructor);
+        console.log(person1 instanceof Person);
+        console.log(person2 instanceof Person);
+        console.log(funInstanceof(person1, Person))
+        console.log(funInstanceof(person2, Person))
+    </script>
+</body>
+
+</html>
